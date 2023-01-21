@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
+// імпорт dispatch
+import { useDispatch } from 'react-redux';
+// імпорт генератор екшену
+import { addContact } from 'redux/contactsSlice';
 
 export default function ContactForm({ addContacts }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
 
   // Метод записує дані із інпута у стейт
   const handleInputChange = event => {
@@ -26,7 +31,11 @@ export default function ContactForm({ addContacts }) {
     // console.log(this.state.name);
 
     // Записуємо у пропс значення стейту (передаємо дані у App-компонент)
-    addContacts(name, number);
+    // addContacts(name, number);
+
+    // викликаємо генератор екшену та передаємо текст завдання для поля payload
+    dispatch(addContact(name, number));
+
     // Очистка форми
     reset();
   };

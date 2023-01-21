@@ -1,11 +1,14 @@
 import React from 'react';
 import './ContactList.css';
+import { useSelector } from 'react-redux';
 
-const ContactList = ({ filteredContacts, deleteContact }) => {
+const ContactList = ({ deleteContact }) => {
+  const contacts = useSelector(state => state.contacts);
+
   return (
     <>
       <ul className="contact__list">
-        {filteredContacts.map(({ id, name, number }) => (
+        {contacts.map(({ id, name, number }) => (
           <li key={id} className="contact__item">
             <p className="contact__name">
               {name}: {number}

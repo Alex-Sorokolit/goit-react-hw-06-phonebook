@@ -31,6 +31,7 @@ export function App() {
     // state.filter нормалізуємо один раз, а не при кожній ітерації методу filter
     const normalizedFilter = filter.toLocaleLowerCase();
 
+    // contact
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
