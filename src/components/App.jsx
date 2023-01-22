@@ -25,6 +25,3 @@ export function App() {
     </div>
   );
 }
-
-// Не повинно додаватися два однакових ім'я
-// LocaleStorage
