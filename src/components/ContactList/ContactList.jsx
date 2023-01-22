@@ -2,25 +2,26 @@ import React from 'react';
 import './ContactList.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
+import { getContacts, getFilter } from 'redux/selectors';
 
-// const getVisibleContacts = () => {
-//   // state.filter нормалізуємо один раз, а не при кожній ітерації методу filter
-//   const normalizedFilter = filter.toLocaleLowerCase();
+const getVisibleContacts = (contacts, filter) => {
+  const normalizedFilter = filter.toLowerCase();
 
-//   // contact
-//   return contacts.filter(contact =>
-//     contact.name.toLowerCase().includes(normalizedFilter)
-//   );
-// };
+  return contacts.filter(contact =>
+    contact.name.toLowerCase().includes(normalizedFilter)
+  );
+};
 
 const ContactList = () => {
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+  const visibleContacts = getVisibleContacts(contacts, filter);
   const dispatch = useDispatch();
 
   return (
     <>
       <ul className="contact__list">
-        {contacts.map(({ id, name, number }) => (
+        {visibleContacts.map(({ id, name, number }) => (
           <li key={id} className="contact__item">
             <p className="contact__name">
               {name}: {number}

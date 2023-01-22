@@ -1,36 +1,22 @@
+// React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from 'components/App';
+// Redux
 import { Provider } from 'react-redux';
 import { store } from 'redux/store';
+// Component
+import { App } from 'components/App';
 import './index.css';
+// Persist
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
-
-/** 
-install RexuxToolKit, react-redux
-Структура папок
-redux
-- store
-
-Configure Store
-
-В indexe.js імпорт Provider, store
-обгортаємо App в Provider 
-
-Створюємо Slice у slice.js
-В якому створюємо редюсери і екшени
-
-Додаємо редюсер у стор store.js
-
-В компоненті додаємо useSelector, useDispatch та екшени 
-useSelector отримує частину стору
-useDispatch метод надсилання екшену
-
-*/
