@@ -1,18 +1,20 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/filterSlice';
 // Генератор випадкових id
 const filterInputId = nanoid();
 
-const Filter = ({ value, changeFilter }) => {
+const Filter = () => {
+  const dispatch = useDispatch();
+
   return (
     <label htmlFor={filterInputId}>
       Find contact by name:
       <input
         type="text"
         name="filter"
-        value={value}
-        onChange={changeFilter}
+        onChange={event => dispatch(setFilter(event.target.value))}
         id={filterInputId}
       />
     </label>

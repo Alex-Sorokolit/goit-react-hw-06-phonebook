@@ -3,6 +3,16 @@ import './ContactList.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
 
+// const getVisibleContacts = () => {
+//   // state.filter нормалізуємо один раз, а не при кожній ітерації методу filter
+//   const normalizedFilter = filter.toLocaleLowerCase();
+
+//   // contact
+//   return contacts.filter(contact =>
+//     contact.name.toLowerCase().includes(normalizedFilter)
+//   );
+// };
+
 const ContactList = () => {
   const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
