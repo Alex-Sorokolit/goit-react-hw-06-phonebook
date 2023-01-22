@@ -12,3 +12,25 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>
 );
+
+/** 
+install RexuxToolKit, react-redux
+Структура папок
+redux
+- store
+
+Configure Store
+
+В indexe.js імпорт Provider, store
+обгортаємо App в Provider 
+
+Створюємо Slice у slice.js
+В якому створюємо редюсери і екшени
+
+Додаємо редюсер у стор store.js
+
+В компоненті додаємо useSelector, useDispatch та екшени 
+useSelector отримує частину стору
+useDispatch метод надсилання екшену
+
+*/

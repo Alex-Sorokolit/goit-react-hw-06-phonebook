@@ -1,6 +1,6 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-const contactsSlice = createSlice({
+export const contactsSlice = createSlice({
   name: 'contaсts',
   initialState: [],
   reducers: {
@@ -28,5 +28,7 @@ const contactsSlice = createSlice({
 
 // Генератори екшенів
 export const { addContact, deleteContact } = contactsSlice.actions;
-// Редюсек слайсу контактів
-export const contactsReducer = contactsSlice.reducer;
+// Редюсер слайсу контактів
+// export const contactsReducer = contactsSlice.reducer;
+// Можна не експортувати, у слайса вже є властивість reducer,
+// ми просто експортуємо сам slice і в stor   дописуємо.reducer

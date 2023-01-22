@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
-import { nanoid } from 'nanoid';
 
 export function App() {
   // Дістаємо дані із localStorage з перевіркою чи вони там є, якщо немає то записуємо пустий масив
-  const [contacts, setContacts] = useState(() => {
+  const [contacts] = useState(() => {
     const savedContacts = localStorage.getItem('contacts');
     if (savedContacts !== null) {
       const parsedContacts = JSON.parse(savedContacts);
@@ -37,47 +36,17 @@ export function App() {
     );
   };
 
-  const deleteContact = contactId => {
-    setContacts(prevState =>
-      prevState.filter(contact => contact.id !== contactId)
-    );
-  };
-
-  // Додає дані користувача у масив
-  const addContacts = (name, number) => {
-    // Перевірка чи існує контакт із таким ім'ям у масиві
-    if (
-      contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      )
-    ) {
-      alert(`${name} is already in contacts`);
-      return;
-    }
-    // Запис даних із інпутів у масив
-    const newContact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-
-    setContacts(prevContacts => [...prevContacts, newContact]);
-  };
-
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm addContacts={addContacts} />
+      <ContactForm />
 
       <h2>Contacts</h2>
 
       {contacts.length > 0 && (
         <>
           <Filter value={filter} changeFilter={changeFilter}></Filter>
-          <ContactList
-            filteredContacts={getVisibleContacts()}
-            deleteContact={deleteContact}
-          />
+          <ContactList filteredContacts={getVisibleContacts()} />
         </>
       )}
     </div>
